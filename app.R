@@ -2,8 +2,6 @@ library(dbplyr)
 library(dplyr)
 library(ggplot2)
 library(shiny)
-#my code below answers up to Q2.c with part of Q2.D done but not fully working
-#so i started by doing question one and then modifying my code each time to add in the customizations to answer each question 
 
 athlete_events <- read.csv("athlete_events.csv") #loading the data
 #unique_medals <- athlete_events %>% #to make sure i just had one mdeal per event, doing so changed the rows of data from 271,116 to 271,106
@@ -74,8 +72,7 @@ server <- function(input, output) {
     filter_data  
   })
   
-  #im not sure if this code could have been done inside of the original filter i made but i did this first beofre i added in all the other questions for the filter
-  unique_medals <- reactive({
+ unique_medals <- reactive({
     df.selection() %>%
       filter(Medal %in% c("Gold", "Silver", "Bronze")) %>%
       distinct(Event, NOC, .keep_all = TRUE) %>%
